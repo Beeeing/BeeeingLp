@@ -4,13 +4,22 @@ import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
 import { Environment, Float, Text3D, Center } from "@react-three/drei"
 import { EffectComposer, Bloom } from "@react-three/postprocessing"
-import { motion } from "framer-motion-3d"
+import { motion as motion3d } from "framer-motion-3d"
+import { motion } from "framer-motion"
 import { MeshGradient } from "./effects/mesh-gradient"
 import { ParticleField } from "./effects/particle-field"
 import { LiquidButton } from "./effects/liquid-button"
 import * as THREE from "three"
 
 export default function Hero3D() {
+  const material = new THREE.MeshStandardMaterial({
+    color: "#FFD700",
+    metalness: 0.8,
+    roughness: 0.2,
+    emissive: "#FFD700",
+    emissiveIntensity: 0.2
+  })
+
   return (
     <div className="relative min-h-screen">
       {/* Background Effects */}
@@ -23,7 +32,7 @@ export default function Hero3D() {
           <Suspense fallback={null}>
             <Center>
               <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1}>
-                <motion.group
+                <motion3d.group
                   initial={{ scale: 0, rotateX: 90 }}
                   animate={{ scale: 1, rotateX: 0 }}
                   transition={{
@@ -42,17 +51,11 @@ export default function Hero3D() {
                     bevelSize={0.02}
                     bevelOffset={0}
                     bevelSegments={5}
+                    material={material}
                   >
                     Beeeeing
-                    <primitive object={new THREE.MeshStandardMaterial({
-                      color: "#FFD700",
-                      metalness: 0.8,
-                      roughness: 0.2,
-                      emissive: "#FFD700",
-                      emissiveIntensity: 0.2
-                    })} />
                   </Text3D>
-                </motion.group>
+                </motion3d.group>
               </Float>
             </Center>
             <Environment preset="city" />

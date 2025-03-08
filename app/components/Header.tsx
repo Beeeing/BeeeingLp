@@ -5,13 +5,13 @@ import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Menu } from "lucide-react"
-import { Button } from "@/app/components/ui/button"
+import { Button } from "./ui/button"
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
   SheetTitle,
-} from "@/app/components/ui/sheet"
+} from "./ui/sheet"
 
 const menuItems = [
   { name: "サービス", href: "#services" },

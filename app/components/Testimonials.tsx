@@ -1,8 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader } from "@/app/components/ui/card"
-import { Badge } from "@/app/components/ui/badge"
+import { Card, CardContent, CardHeader } from "./ui/card"
+import { Badge } from "./ui/badge"
 import Image from "next/image"
 import { Star } from "lucide-react"
 

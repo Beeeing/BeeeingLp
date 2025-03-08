@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight } from "lucide-react"
-import { Card3D } from "../components/3d/card"
-import { Button } from "@/components/ui/button"
+import { Card3D } from "@/app/components/ui/3d-card"
+import { Button } from "@/app/components/ui/button"
 import Image from "next/image"
-import { MagneticButton } from "@/components/ui/magnetic-button"
+import { MagneticButton } from "@/app/components/ui/magnetic-button"
 
 const GeometricPattern = () => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })

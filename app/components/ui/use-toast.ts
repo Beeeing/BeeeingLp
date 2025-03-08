@@ -1,4 +1,4 @@
-import { useToast as useToastHook, toast as toastHook } from "@/components/ui/toast"
+import { useToast as useToastHook, toast as toastHook } from "./toast"
 
 export const toast = toastHook
 

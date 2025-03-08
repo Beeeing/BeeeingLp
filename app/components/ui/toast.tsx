@@ -115,6 +115,45 @@ type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>
 
 type ToastActionElement = React.ReactElement<typeof ToastAction>
 
+export interface ToastOptions {
+  title?: string
+  description?: string
+  action?: ToastActionElement
+  variant?: "default" | "destructive"
+}
+
+const toastStore = {
+  toasts: [] as ToastOptions[],
+  listeners: new Set<() => void>(),
+  addToast: (toast: ToastOptions) => {
+    toastStore.toasts.push(toast)
+    toastStore.listeners.forEach((listener) => listener())
+  },
+}
+
+export function useToast() {
+  const [toasts, setToasts] = React.useState<ToastOptions[]>([])
+
+  React.useEffect(() => {
+    const updateToasts = () => setToasts([...toastStore.toasts])
+    toastStore.listeners.add(updateToasts)
+    return () => {
+      toastStore.listeners.delete(updateToasts)
+    }
+  }, [])
+
+  return {
+    toasts,
+    toast: (options: ToastOptions) => {
+      toastStore.addToast(options)
+    },
+  }
+}
+
+export const toast = (options: ToastOptions) => {
+  toastStore.addToast(options)
+}
+
 export {
   type ToastProps,
   type ToastActionElement,

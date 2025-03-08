@@ -61,7 +61,9 @@ const projects = [
   },
 ]
 
-const categories = ["All", ...new Set(projects.map((project) => project.category))]
+const categories = ["All", ...projects
+  .map(project => project.category)
+  .filter((category, index, array) => array.indexOf(category) === index)]
 
 export default function PortfolioGrid() {
   const [filter, setFilter] = useState("All")
